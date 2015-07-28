@@ -12,7 +12,11 @@ module.exports = function(sequelize, DataTypes) {
 		   	type: DataTypes.STRING,
 		   	validate: { notEmpty: {msg: "-> Falta Respuesta"},
 		                notIn: { args: [["Respuesta"]], msg: "-> Indicar Respuesta" } } // Para que no se introduzca
-		  }                                                                             // la cadena "Respuesta"  
+		  },                                                                            // la cadena "Respuesta" 		                                                                               
+		   tema: {
+		   	type: DataTypes.STRING,
+		   	validate: { notEmpty: {msg: "-> Falta Tema"}}		                 
+		  }                                                                              
 		 }    	
 		);
 }
