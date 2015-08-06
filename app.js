@@ -28,6 +28,23 @@ app.use(session());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Auto-logout
+app.use(function(req, res, next) {      
+
+        if (req.session.user) {            
+            var ahora = (new Date()).getTime();
+
+            if (ahora>req.session.expiracion) {
+                console.log("Excedido tiempo de sesión.");
+                delete req.session.user;                
+                res.redirect(req.session.redir.toString());
+            } else {
+                req.session.expiracion = ahora + 120000;      // Actualizamos el tiempo de expiración
+            }          
+        }  
+    next();
+});
+
 // Helpers dinámicos:
 app.use(function(req, res, next) {
 

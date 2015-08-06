@@ -21,6 +21,7 @@ exports.create = function(req, res) {
 	var login     = req.body.login;
 	var password  = req.body.password;
 
+
 	var userController = require('./user_controller');
 	userController.autenticar(login, password, function(error, user) {
 
@@ -29,11 +30,13 @@ exports.create = function(req, res) {
 			res.redirect("/login");
 			return;
 		}
-
+        
 		// Crear req.session.user y guardar campos id y username
 		// La sesión se define por la existencia de: req.session.user
-		req.session.user = {id:user.id, username:user.username};
+		var tiempo = (new Date()).getTime() + 120000;		// 2 minutos son 120000 milisegundos
+		req.session.expiracion = tiempo; 
 
+		req.session.user = {id:user.id, username:user.username };		   
 		res.redirect(req.session.redir.toString()); // redirección a path anterior a login
 	});
 };
