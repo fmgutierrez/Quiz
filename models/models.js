@@ -37,7 +37,7 @@ var Comment = sequelize.import(comment_path);
 
 Comment.belongsTo(Quiz,{onDelete:'cascade'});  // relación: un comentario pertenece a un quiz
 											   // Si borramos una pregunta que se borren sus comentarios	
-Quiz.hasMany(Comment);    // relación: un quiz puede tener varios comentarios
+Quiz.hasMany(Comment,{onDelete:'cascade'});    // relación: un quiz puede tener varios comentarios
 
 exports.Quiz = Quiz;  // exportar definición de la tabla Quiz
 exports.Comment = Comment;
