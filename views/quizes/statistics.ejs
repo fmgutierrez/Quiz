@@ -1,0 +1,16 @@
+<h2>Estadísticas</h2>
+<br>
+<center><table>
+	<tr><td>Número de preguntas: <b><%= estadisticas.preguntas %></b></td><td>
+	<tr><td>Número de comentarios totales: <b><%= estadisticas.comentariosTotales %></b>, de los cuales 
+	<b><%= estadisticas.comentariosTotalesPublicados %></b> están publicados.</td><td>
+	<tr><td>Número medio de comentarios por pregunta: 
+	    <b><%if (estadisticas.comentariosTotales!=0) { %>
+			<%= estadisticas.comentariosTotales/estadisticas.preguntas %>
+		<%}else{%>
+		<%= "No existen comentarios" %>
+		<%}%></b>
+	</td><td>
+	<tr><td>Número de preguntas sin comentarios: <b><%= estadisticas.preguntasSinComentarios %></b></td><td>
+	<tr><td>Número de preguntas con comentarios: <b><%= estadisticas.preguntas-estadisticas.preguntasSinComentarios %></b></td><td>
+</table></center>

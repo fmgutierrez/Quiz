@@ -99,9 +99,16 @@ exports.update = function(req, res) {
   );
 };
 
-//DELETE /quizes/:id
+// DELETE /quizes/:id
 exports.destroy = function(req, res) {
   req.quiz.destroy().then( function() {
     res.redirect('/quizes');
   }).catch(function(error) {next(error)});
 };
+
+
+// GET /quizes/statistics
+exports.statistics = function(req, res) {
+  var statisticsController = require('./statistics_controller');
+  statisticsController.calcular(req,res);  
+}
